@@ -21,8 +21,6 @@
             display: flex; justify-content: center; align-items: center;
             height: 100vh; width: 100vw;
         }
-
-        /* FONDO */
         .fondo {
             position: fixed; inset: 0; z-index: 0;
             background:
@@ -32,8 +30,6 @@
             animation: pulsarFondo 8s ease-in-out infinite alternate;
         }
         @keyframes pulsarFondo { 0% { filter: brightness(1); } 100% { filter: brightness(1.2); } }
-
-        /* PARTÍCULAS */
         .particulas { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
         .particula {
             position: absolute; width: 2px; height: 2px;
@@ -46,8 +42,6 @@
             90%  { opacity: 0.4; }
             100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
         }
-
-        /* PANTALLA INICIO */
         #start-screen {
             position: fixed; inset: 0; z-index: 100;
             display: flex; flex-direction: column;
@@ -88,96 +82,87 @@
         .btn-abrir:hover::before { transform: scaleX(1); }
         .btn-abrir:hover { border-color: #c0394f; color: var(--oro-claro); }
         .btn-abrir:active { transform: scale(0.97); }
-
-        /* LIBRO */
         #libro-wrapper {
             position: relative; z-index: 10;
             display: none; flex-direction: column;
             align-items: center; gap: 14px;
         }
         #libro-wrapper.visible { display: flex; }
-
         .libro-contenedor {
             width: min(88vw, 360px);
-            height: min(74vh, 550px);
+            height: min(72vh, 520px);
             position: relative;
             perspective: 1400px;
         }
-
         .hoja {
             position: absolute; inset: 0;
             transform-style: preserve-3d;
             transform-origin: left center;
-            transition: transform 0.75s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-            cursor: pointer;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .hoja.volteada { transform: rotateY(-180deg); }
-
         .cara {
             position: absolute; inset: 0;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
             overflow: hidden;
-            box-shadow: 4px 4px 25px rgba(0,0,0,0.7);
+            box-shadow: 4px 4px 25px rgba(0,0,0,0.6);
+            border-radius: 4px;
         }
-        .cara-front { background: var(--blanco); }
-        .cara-back  { background: var(--blanco); transform: rotateY(180deg); }
-
+        .cara-front { background: var(--blanco); z-index: 2; }
+        .cara-back  { background: var(--blanco); transform: rotateY(180deg); z-index: 1; }
         .cara img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
         .caption {
             position: absolute; bottom: 0; left: 0; right: 0;
-            background: linear-gradient(transparent, rgba(5,0,12,0.92));
-            color: white; padding: 50px 18px 22px; text-align: center;
+            background: linear-gradient(transparent, rgba(5,0,12,0.95));
+            color: white; padding: 60px 18px 25px; text-align: center;
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1rem, 4vw, 1.4rem);
+            font-size: clamp(1.1rem, 4.5vw, 1.4rem);
             font-style: italic; font-weight: 300; line-height: 1.3;
         }
-
         .pagina-cover {
             width: 100%; height: 100%;
             background: linear-gradient(145deg, #1a0a14, #0d0510, #12080f);
             display: flex; flex-direction: column;
-            justify-content: center; align-items: center; gap: 0;
+            justify-content: center; align-items: center;
+            border: 1px solid rgba(232,201,122,0.15);
         }
         .cover-titulo {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.8rem, 8vw, 3rem);
+            font-size: clamp(1.8rem, 8vw, 2.8rem);
             font-style: italic; font-weight: 300;
-            color: var(--oro-claro); text-align: center; line-height: 1.1;
+            color: var(--oro-claro); text-align: center; line-height: 1.2;
             text-shadow: 0 0 40px rgba(232,201,122,0.2);
+            padding: 0 20px;
         }
         .cover-linea { width: 40px; height: 1px; background: var(--oro); margin: 18px auto; opacity: 0.6; }
-        .cover-sub { font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; opacity: 0.45; color: var(--oro-claro); }
+        .cover-sub { font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.5; color: var(--oro-claro); text-align: center;}
         .cover-corazon { font-size: 1.3rem; margin-top: 25px; animation: latir 1.6s ease-in-out infinite; }
         @keyframes latir { 0%,100% { transform: scale(1); } 50% { transform: scale(1.2); } }
-
-        /* CONTROLES */
         .nav-btns { display: flex; gap: 14px; align-items: center; }
         .nav-btn {
             background: rgba(255,255,255,0.06);
             border: 1px solid rgba(232,201,122,0.2);
             color: var(--oro); font-size: 1rem;
-            width: 40px; height: 40px;
+            width: 45px; height: 45px;
             display: flex; align-items: center; justify-content: center;
             cursor: pointer; transition: background 0.3s, transform 0.2s;
-            user-select: none;
+            user-select: none; border-radius: 50%;
         }
         .nav-btn:hover { background: rgba(122,28,46,0.4); transform: scale(1.05); }
         .nav-btn:active { transform: scale(0.93); }
         .pagina-num {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem; font-style: italic;
-            color: rgba(232,201,122,0.4);
-            min-width: 90px; text-align: center; letter-spacing: 1px;
+            font-size: 0.95rem; font-style: italic;
+            color: rgba(232,201,122,0.6);
+            min-width: 100px; text-align: center; letter-spacing: 1px;
         }
-
-        /* MÚSICA */
         .music-bar {
             display: flex; align-items: center; gap: 11px;
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(232,201,122,0.15);
             padding: 9px 16px; backdrop-filter: blur(10px);
+            border-radius: 20px;
         }
         .music-btn {
             background: none; border: none; cursor: pointer;
@@ -188,9 +173,10 @@
         .music-nombre {
             font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase;
             color: rgba(232,201,122,0.45); min-width: 85px; text-align: center;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
         }
-        .music-prog { width: 65px; height: 2px; background: rgba(232,201,122,0.15); cursor: pointer; }
-        .music-prog-fill { height: 100%; background: var(--oro); width: 0%; transition: width 0.5s linear; }
+        .music-prog { width: 65px; height: 3px; background: rgba(232,201,122,0.15); cursor: pointer; border-radius: 2px; }
+        .music-prog-fill { height: 100%; background: var(--oro); width: 0%; transition: width 0.1s linear; }
     </style>
 </head>
 <body>
@@ -198,7 +184,6 @@
 <div class="fondo"></div>
 <div class="particulas" id="particulas"></div>
 
-<!-- INICIO -->
 <div id="start-screen">
     <div class="titulo-inicio">Recuerdos<br>Eternos</div>
     <div class="subtitulo-inicio">un álbum para ti</div>
@@ -206,7 +191,6 @@
     <button class="btn-abrir" onclick="iniciar()">Abrir Álbum</button>
 </div>
 
-<!-- LIBRO -->
 <div id="libro-wrapper">
     <div class="libro-contenedor" id="libro"></div>
 
@@ -231,6 +215,20 @@
 <audio id="audio-player" preload="auto"></audio>
 
 <script>
+    // TUS ENLACES DE POSTIMG REALES YA PUESTOS AQUÍ
+    const linksFotos = [
+        "https://i.postimg.cc/D8MTfNr4/foto1-jpg.jpg",
+        "https://i.postimg.cc/Lnbp4Wtk/foto2-jpg.jpg",
+        "https://i.postimg.cc/w7GpxrXL/foto3-jpg.jpg",
+        "https://i.postimg.cc/crbS1zRR/foto4-jpg.jpg",
+        "https://i.postimg.cc/QHy3NzQp/foto5-jpg.jpg",
+        "https://i.postimg.cc/QFKrFqm9/foto6-jpg.jpg",
+        "https://i.postimg.cc/ZWvhWLHd/foto7-jpg.jpg",
+        "https://i.postimg.cc/hXQqX0s7/foto8-jpg.jpg",
+        "https://i.postimg.cc/pm5tmBCj/foto9-jpg.jpg",
+        "https://i.postimg.cc/gxLPxKsR/foto10-jpg.jpg"
+    ];
+
     const frases = [
         "En Tumbes 🏖️",
         "Con tu papito ❤️",
@@ -243,13 +241,14 @@
         "En el Sunset 🌅",
         "Y una imagen colada de nosotros muy jóvenes 😁"
     ];
+
+    // TUS CANCIONES CON SU EXTENSIÓN REAL DE GITHUB
     const canciones = [
         { src: "cancion1.m4a.m4a", nombre: "Canción 1" },
         { src: "cancion2.m4a.m4a", nombre: "Canción 2" },
         { src: "cancion3.m4a.m4a", nombre: "Canción 3" }
     ];
 
-    // Partículas
     (function() {
         const cont = document.getElementById('particulas');
         for (let i = 0; i < 28; i++) {
@@ -264,7 +263,6 @@
         }
     })();
 
-    // Estado del libro
     let paginaActual = 0;
     let totalHojas = 0;
     let hojas = [];
@@ -274,8 +272,8 @@
         const d = document.createElement('div');
         d.style.cssText = 'width:100%;height:100%;position:relative;';
         d.innerHTML = `
-            <img src="foto${num}.jpg" alt="${frases[num-1]}"
-                onerror="this.parentElement.style.background='#1a0a14';this.style.display='none'">
+            <img src="${linksFotos[num-1]}" alt="${frases[num-1]}"
+                onerror="this.parentElement.style.background='linear-gradient(135deg, #1a0a14, #2a1220)';this.style.display='none'">
             <div class="caption">${frases[num-1]}</div>`;
         return d;
     }
@@ -295,22 +293,31 @@
         const libro = document.getElementById('libro');
         libro.innerHTML = '';
         hojas = [];
-
-        // 12 páginas → 6 hojas
+        
         const paginas = [
-            crearCover('Nuestros<br>Recuerdos', 'toca ▶ para comenzar'),
-            crearFoto(1), crearFoto(2), crearFoto(3), crearFoto(4),
-            crearFoto(5), crearFoto(6), crearFoto(7), crearFoto(8),
-            crearFoto(9), crearFoto(10),
-            crearCover('Gracias por<br>existir', 'con todo mi amor')
+            crearCover('Nuestros<br>Recuerdos', 'un álbum para mamá'), 
+            crearCover('Con amor...', 'pasa la página'),                      
+            
+            crearFoto(1), crearCover('✨', 'siguiente'), 
+            crearFoto(2), crearCover('✨', 'siguiente'), 
+            crearFoto(3), crearCover('✨', 'siguiente'), 
+            crearFoto(4), crearCover('✨', 'siguiente'), 
+            crearFoto(5), crearCover('✨', 'siguiente'), 
+            crearFoto(6), crearCover('✨', 'siguiente'), 
+            crearFoto(7), crearCover('✨', 'siguiente'), 
+            crearFoto(8), crearCover('✨', 'siguiente'), 
+            crearFoto(9), crearCover('✨', 'siguiente'), 
+            crearFoto(10),                               
+            
+            crearCover('Gracias por<br>existir', 'con todo mi amor')          
         ];
 
-        totalHojas = paginas.length / 2; // 6
+        totalHojas = paginas.length / 2;
 
         for (let i = 0; i < totalHojas; i++) {
             const hoja = document.createElement('div');
             hoja.className = 'hoja';
-            hoja.style.zIndex = totalHojas - i;
+            hoja.style.zIndex = totalHojas - i; 
 
             const front = document.createElement('div');
             front.className = 'cara cara-front';
@@ -324,14 +331,6 @@
             hoja.appendChild(back);
             libro.appendChild(hoja);
             hojas.push(hoja);
-
-            // Click en hoja para avanzar
-            hoja.addEventListener('click', function(e) {
-                const rect = hoja.getBoundingClientRect();
-                const mitad = rect.left + rect.width / 2;
-                if (e.clientX > mitad) paginaSiguiente();
-                else paginaAnterior();
-            });
         }
     }
 
@@ -340,8 +339,7 @@
         if (paginaActual === 0) el.textContent = 'Portada';
         else if (paginaActual >= totalHojas) el.textContent = 'Fin ❤️';
         else {
-            const n = paginaActual * 2 - 1;
-            el.textContent = `Foto ${Math.min(n, 10)} / 10`;
+            el.textContent = `Foto ${paginaActual} / 10`;
         }
     }
 
@@ -349,13 +347,13 @@
         if (animando || paginaActual >= totalHojas) return;
         animando = true;
         const h = hojas[paginaActual];
-        h.style.zIndex = totalHojas + 2;
-        setTimeout(() => {
-            h.classList.add('volteada');
-            paginaActual++;
-            actualizarNum();
-            setTimeout(() => { h.style.zIndex = ''; animando = false; }, 760);
-        }, 10);
+        h.classList.add('volteada');
+        paginaActual++;
+        actualizarNum();
+        setTimeout(() => { 
+            h.style.zIndex = paginaActual; 
+            animando = false; 
+        }, 750);
     }
 
     function paginaAnterior() {
@@ -363,21 +361,22 @@
         animando = true;
         paginaActual--;
         const h = hojas[paginaActual];
-        h.style.zIndex = totalHojas + 2;
+        h.style.zIndex = totalHojas + (totalHojas - paginaActual);
         h.classList.remove('volteada');
         actualizarNum();
-        setTimeout(() => { h.style.zIndex = ''; animando = false; }, 760);
+        setTimeout(() => { animando = false; }, 750);
     }
 
-    // Swipe táctil
     let txStart = 0;
     document.addEventListener('touchstart', e => { txStart = e.touches[0].clientX; }, { passive: true });
     document.addEventListener('touchend', e => {
         const diff = txStart - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 45) diff > 0 ? paginaSiguiente() : paginaAnterior();
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) paginaSiguiente();
+            else paginaAnterior();
+        }
     });
 
-    // Audio
     const player = document.getElementById('audio-player');
     let idxCancion = 0;
 
@@ -399,7 +398,6 @@
     };
     player.onended = siguienteCancion;
 
-    // Iniciar
     let yaIniciado = false;
     function iniciar() {
         if (yaIniciado) return;
